@@ -1,8 +1,8 @@
-PROJECT(LIBSL)
+project(LIBSL)
 
 ###############################
 
-SET(LIBSL_CORE_HEADERS
+set(LIBSL_CORE_HEADERS
 	./LibSL.common.h
 	./LibSL.h
 	./LibSL.precompiled.h
@@ -112,7 +112,7 @@ SET(LIBSL_CORE_HEADERS
 	Win32Helpers/Win32Helpers.h
 	)
 
-SET(LIBSL_CORE_SOURCE
+set(LIBSL_CORE_SOURCE
 #	./LibSL.cpp
 	StlHelpers/StlHelpers.cpp
 	ArrayHelpers/ArrayHelpers.cpp
@@ -166,12 +166,12 @@ SET(LIBSL_CORE_SOURCE
 	../libs/src/rply/rply.c
 	)
 
-CreateSourceGroups("Header files" src "${LIBSL_CORE_HEADERS}")
-CreateSourceGroups("Source files" src "${LIBSL_CORE_SOURCE}")
+createsourcegroups("Header files" src "${LIBSL_CORE_HEADERS}")
+createsourcegroups("Source files" src "${LIBSL_CORE_SOURCE}")
 
 ###############################
 
-SET(LIBSL_GL_HEADERS
+set(LIBSL_GL_HEADERS
 	./LibSL_gl.h
 	Mesh/AnimatedMeshGLSLRenderer.h
 	GLHelpers/GLHelpers.h
@@ -182,7 +182,7 @@ SET(LIBSL_GL_HEADERS
   ../libs/src/imgui/imgui.h
   )
 
-SET(LIBSL_GL_SOURCE
+set(LIBSL_GL_SOURCE
 	GLHelpers/GLHelpers.cpp
 	GLHelpers/AutoBindShader.cpp
 	GLHelpers/GLBasicPipeline.cpp
@@ -204,7 +204,7 @@ SET(LIBSL_GL_SOURCE
   ../libs/src/imgui/imgui_widgets.cpp
 )
 
-SET(LIBSL_GL4_HEADERS
+set(LIBSL_GL4_HEADERS
 	./LibSL_gl4.h
 	Mesh/AnimatedMeshGLSLRenderer.h
 	GLHelpers/GLHelpers.h
@@ -215,7 +215,7 @@ SET(LIBSL_GL4_HEADERS
   ../libs/src/imgui/imgui.h
   )
 
-SET(LIBSL_GL4_SOURCE
+set(LIBSL_GL4_SOURCE
 	GLHelpers/GLHelpers.cpp
 	GLHelpers/AutoBindShader.cpp
   GLHelpers/GLBasicPipeline.cpp
@@ -237,7 +237,7 @@ SET(LIBSL_GL4_SOURCE
   ../libs/src/imgui/imgui_widgets.cpp
 )
 
-SET(LIBSL_GL4CORE_HEADERS
+set(LIBSL_GL4CORE_HEADERS
 	./LibSL_gl4core.h
 	GLHelpers/GLHelpers.h
   GLHelpers/GLBasicPipeline.h
@@ -247,7 +247,7 @@ SET(LIBSL_GL4CORE_HEADERS
   ../libs/src/imgui/imgui.h
   )
 
-SET(LIBSL_GL4CORE_SOURCE
+set(LIBSL_GL4CORE_SOURCE
 	GLHelpers/GLHelpers.cpp
 	GLHelpers/AutoBindShader.cpp
   GLHelpers/GLBasicPipeline.cpp
@@ -268,18 +268,18 @@ SET(LIBSL_GL4CORE_SOURCE
   ../libs/src/imgui/imgui_widgets.cpp
 )
 
-CreateSourceGroups("Header files" src "${LIBSL_GL_HEADERS}")
-CreateSourceGroups("Source files" src "${LIBSL_GL_SOURCE}")
+createsourcegroups("Header files" src "${LIBSL_GL_HEADERS}")
+createsourcegroups("Source files" src "${LIBSL_GL_SOURCE}")
 
-CreateSourceGroups("Header files" src "${LIBSL_GL4_HEADERS}")
-CreateSourceGroups("Source files" src "${LIBSL_GL4_SOURCE}")
+createsourcegroups("Header files" src "${LIBSL_GL4_HEADERS}")
+createsourcegroups("Source files" src "${LIBSL_GL4_SOURCE}")
 
-CreateSourceGroups("Header files" src "${LIBSL_GL4CORE_HEADERS}")
-CreateSourceGroups("Source files" src "${LIBSL_GL4CORE_SOURCE}")
+createsourcegroups("Header files" src "${LIBSL_GL4CORE_HEADERS}")
+createsourcegroups("Source files" src "${LIBSL_GL4CORE_SOURCE}")
 
 ###############################
 
-SET(LIBSL_DX9_HEADERS
+set(LIBSL_DX9_HEADERS
 	LibSL_d3d.h
 	D3DHelpers/D3DHelpers.h
 	D3DHelpers/FxImageProcessing.h
@@ -301,7 +301,7 @@ SET(LIBSL_DX9_HEADERS
 	UIHelpers/Trackball.h
 )
 
-SET(LIBSL_DX9_SOURCE
+set(LIBSL_DX9_SOURCE
 	D3DHelpers/D3DHelpers.cpp
 	D3DHelpers/FxImageProcessing.cpp
 	D3DHelpers/D3DQuad.cpp
@@ -318,12 +318,12 @@ SET(LIBSL_DX9_SOURCE
 	UIHelpers/BindAntTweakBar.cpp
 )
 
-CreateSourceGroups("Header files" src "${LIBSL_DX9_HEADERS}")
-CreateSourceGroups("Source files" src "${LIBSL_DX9_SOURCE}")
+createsourcegroups("Header files" src "${LIBSL_DX9_HEADERS}")
+createsourcegroups("Source files" src "${LIBSL_DX9_SOURCE}")
 
 ###############################
 
-SET(LIBSL_DX10_HEADERS
+set(LIBSL_DX10_HEADERS
 	LibSL_dx10.h
 	D3DHelpers/D3DHelpers.h
 	D3DHelpers/FxImageProcessing.h
@@ -345,7 +345,7 @@ SET(LIBSL_DX10_HEADERS
 	UIHelpers/Trackball.h
 )
 
-SET(LIBSL_DX10_SOURCE
+set(LIBSL_DX10_SOURCE
 	D3DHelpers/D3DHelpers.cpp
 	D3DHelpers/FxImageProcessing.cpp
 	D3DHelpers/D3DQuad.cpp
@@ -362,16 +362,16 @@ SET(LIBSL_DX10_SOURCE
 	UIHelpers/BindAntTweakBar.cpp
 )
 
-CreateSourceGroups("Header files" src "${LIBSL_DX10_HEADERS}")
-CreateSourceGroups("Source files" src "${LIBSL_DX10_SOURCE}")
+createsourcegroups("Header files" src "${LIBSL_DX10_HEADERS}")
+createsourcegroups("Source files" src "${LIBSL_DX10_SOURCE}")
 
 ###############################
 
-# IF    (WIN32)
-# ADD_DEFINITIONS("-DHAS_TAUCS")
-# ENDIF (WIN32)
+# if    (WIN32)
+# add_definitions("-DHAS_TAUCS")
+# endif (WIN32)
 
-SET(LIBSL_LINALG_HEADERS
+set(LIBSL_LINALG_HEADERS
 	./LibSL_linalg.h
 	LinAlg/LinearSolver.h
 	LinAlg/PCA.h
@@ -379,19 +379,19 @@ SET(LIBSL_LINALG_HEADERS
 	Image/PushPull.h
 )
 
-SET(LIBSL_LINALG_SOURCE
+set(LIBSL_LINALG_SOURCE
 	LinAlg/PCA.cpp
 )
 
-CreateSourceGroups("Header files" src "${LIBSL_LINALG_HEADERS}")
-CreateSourceGroups("Source files" src "${LIBSL_LINALG_SOURCE}")
+createsourcegroups("Header files" src "${LIBSL_LINALG_HEADERS}")
+createsourcegroups("Source files" src "${LIBSL_LINALG_SOURCE}")
 
 ###############################
 
-ADD_LIBRARY(LibSL STATIC ${LIBSL_CORE_SOURCE} ${LIBSL_CORE_HEADERS})
-SET_TARGET_PROPERTIES(LibSL PROPERTIES DEBUG_POSTFIX "-d")
-SET_PROPERTY(TARGET LibSL APPEND PROPERTY
-   INTERFACE_INCLUDE_DIRECTORIES
+add_library(LibSL STATIC ${LIBSL_CORE_SOURCE} ${LIBSL_CORE_HEADERS})
+set_target_properties(LibSL PROPERTIES DEBUG_POSTFIX "-d")
+set_property(TARGET LibSL APPEND PROPERTY
+   INTERFACE_include_directories
  			${CMAKE_CURRENT_SOURCE_DIR}/..
 			${CMAKE_CURRENT_SOURCE_DIR}/../LibSL
 			${CMAKE_CURRENT_SOURCE_DIR}/../libs/src
@@ -415,47 +415,47 @@ SET_PROPERTY(TARGET LibSL APPEND PROPERTY
 			$ENV{DXSDK_DIR}/lib/x86
 			$ENV{DXSDK_DIR}/Samples/C++/DXUT/Core)
 
-ADD_DEFINITIONS(-D_UNICODE -DUNICODE)
-ADD_DEFINITIONS(-DTW_STATIC -DTW_NO_LIB_PRAGMA)
+add_definitions(-D_UNICODE -DUNICODE)
+add_definitions(-DTW_STATIC -DTW_NO_LIB_PRAGMA)
 
 # Compile LibSL with CXX11 support if available (ConvexHull with multithread support)
-IF (EMSCRIPTEN)
-	Include(UseCXX11)
+if (EMSCRIPTEN)
+	include(UseCXX11)
 	AddTargetCXX11(LibSL)
-ELSE()
-	IF(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-		INCLUDE(UseCXX11_clang)
-	ELSE()
-		Include(UseCXX11)
+else()
+	if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+		include(UseCXX11_clang)
+	else()
+		include(UseCXX11)
 		AddTargetCXX11(LibSL)
-	ENDIF()
-ENDIF()
+	endif()
+endif()
 
-IF    (LIBSL_BUILD_MAX_PERFORMANCE)
-ADD_DEFINITIONS("-DNDEBUG")
-ENDIF (LIBSL_BUILD_MAX_PERFORMANCE)
+if    (LIBSL_BUILD_MAX_PERFORMANCE)
+add_definitions("-DNDEBUG")
+endif (LIBSL_BUILD_MAX_PERFORMANCE)
 
-IF (LIBSL_POWER_USER)
-ADD_DEFINITIONS("-DLIBSL_IDKFK")
-ENDIF (LIBSL_POWER_USER)
+if (LIBSL_POWER_USER)
+add_definitions("-DLIBSL_IDKFK")
+endif (LIBSL_POWER_USER)
 
-IF(WIN32)
-#TARGET_LINK_LIBRARIES(LibSL jpeg png 3ds zlib loki qhull shlwapi psapi winmm tinyxml hashlibpp)
-TARGET_LINK_LIBRARIES(LibSL jpeg png 3ds zlib qhull shlwapi psapi winmm tinyxml hashlibpp)
-ELSE(WIN32)
-#TARGET_LINK_LIBRARIES(LibSL jpeg png 3ds zlib loki qhull tinyxml hashlibpp)
-TARGET_LINK_LIBRARIES(LibSL jpeg png 3ds zlib qhull tinyxml hashlibpp)
-ENDIF(WIN32)
+if(WIN32)
+#target_link_libraries(LibSL jpeg png 3ds zlib loki qhull shlwapi psapi winmm tinyxml hashlibpp)
+target_link_libraries(LibSL jpeg png 3ds zlib qhull shlwapi psapi winmm tinyxml hashlibpp)
+else(WIN32)
+#target_link_libraries(LibSL jpeg png 3ds zlib loki qhull tinyxml hashlibpp)
+target_link_libraries(LibSL jpeg png 3ds zlib qhull tinyxml hashlibpp)
+endif(WIN32)
 
-INSTALL(TARGETS LibSL
+install(TARGETS LibSL
   RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
   LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
   ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib
 )
 
-IF(NOT WIN32)
-INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
-ENDIF(NOT WIN32)
+if(NOT WIN32)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
+endif(NOT WIN32)
 
 ###############################
 
@@ -474,85 +474,85 @@ ENDIF(NOT WIN32)
 #    list(APPEND LIBSL_CORE_SOURCE LibSL.precompiled.cpp)
 #endif (WIN32)
 
-IF(LIBSL_BUILD_GL4)
-	IF(NOT LIBSL_BUILD_GL)
+if(LIBSL_BUILD_GL4)
+	if(NOT LIBSL_BUILD_GL)
 		message( FATAL_ERROR "LibSL for OpenGL 4.x requires to build the standard OpenGL version")
-	ENDIF(NOT LIBSL_BUILD_GL)
-ENDIF(LIBSL_BUILD_GL4)
+	endif(NOT LIBSL_BUILD_GL)
+endif(LIBSL_BUILD_GL4)
 
-IF(LIBSL_BUILD_GL4CORE)
-	IF(NOT LIBSL_BUILD_GL)
+if(LIBSL_BUILD_GL4CORE)
+	if(NOT LIBSL_BUILD_GL)
 		message( FATAL_ERROR "LibSL for OpenGL 4.x core profile requires to build the standard OpenGL version")
-	ENDIF(NOT LIBSL_BUILD_GL)
-ENDIF(LIBSL_BUILD_GL4CORE)
+	endif(NOT LIBSL_BUILD_GL)
+endif(LIBSL_BUILD_GL4CORE)
 
 ###############################
 
-IF(LIBSL_BUILD_GL)
+if(LIBSL_BUILD_GL)
 
-IF(NOT ANDROID)
-	FIND_PACKAGE(OpenGL)
-ELSEIF(NOT ANDROID)
-	SET(OPENGL_LIBRARIES EGL GLESv2)
-ENDIF(NOT ANDROID)
+if(NOT ANDROID)
+	find_package(OpenGL)
+elseif(NOT ANDROID)
+	set(OPENGL_LIBRARIES EGL GLESv2)
+endif(NOT ANDROID)
 
-	ADD_LIBRARY(LibSL_gl STATIC ${LIBSL_GL_SOURCE} ${LIBSL_GL_HEADERS})
+	add_library(LibSL_gl STATIC ${LIBSL_GL_SOURCE} ${LIBSL_GL_HEADERS})
 
-#  IF (NOT EMSCRIPTEN)
-	IF (LIBSL_USE_GLUX)
-	  ADD_DEFINITIONS(-DUSE_GLUX)
-	  SET_TARGET_PROPERTIES(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "USE_GLUX")
-	  SET_PROPERTY(TARGET LibSL_gl APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS USE_GLUX)
-	  IF(NOT WIN32)
+#  if (NOT EMSCRIPTEN)
+	if (LIBSL_USE_GLUX)
+	  add_definitions(-DUSE_GLUX)
+	  set_target_properties(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "USE_GLUX")
+	  set_property(TARGET LibSL_gl APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS USE_GLUX)
+	  if(NOT WIN32)
 	    # hack due to MESA headers including ARB_multitexture
-	    ADD_DEFINITIONS(-DGL_ARB_multitexture=1)
-	    SET_PROPERTY(TARGET LibSL_gl APPEND PROPERTY COMPILE_DEFINITIONS GL_ARB_multitexture=1)
-	    SET_PROPERTY(TARGET LibSL_gl APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS GL_ARB_multitexture=1)
-	  ENDIF(NOT WIN32)
-	ENDIF (LIBSL_USE_GLUX)
-#  ENDIF (NOT EMSCRIPTEN)
+	    add_definitions(-DGL_ARB_multitexture=1)
+	    set_property(TARGET LibSL_gl APPEND PROPERTY COMPILE_DEFINITIONS GL_ARB_multitexture=1)
+	    set_property(TARGET LibSL_gl APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS GL_ARB_multitexture=1)
+	  endif(NOT WIN32)
+	endif (LIBSL_USE_GLUX)
+#  endif (NOT EMSCRIPTEN)
 
-  SET_TARGET_PROPERTIES(LibSL_gl PROPERTIES DEBUG_POSTFIX "-d")
-	IF(WIN32)
-		SET_TARGET_PROPERTIES(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL;_WIN32_WINNT=0x0400;WINVER=0x500")
-	ELSE(WIN32)
-    IF (ANDROID)
-      SET_TARGET_PROPERTIES(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL")
-      TARGET_LINK_LIBRARIES(LibSL_gl ${OPENGL_LIBRARIES})
-      TARGET_LINK_LIBRARIES(LibSL_gl ${GLUT_LIBRARIES})
-      INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
-    ELSE(ANDROID)
-      FIND_PACKAGE(OpenGL)
-      IF(LIBSL_USE_GLFW)
-        #FIND_PACKAGE(glfw3)
-        SET_TARGET_PROPERTIES(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL;USE_GLFW")
-        TARGET_LINK_LIBRARIES(LibSL_gl ${OPENGL_LIBRARIES})
-        TARGET_LINK_LIBRARIES(LibSL_gl glfw)
-      ELSE(LIBSL_USE_GLFW)
-        FIND_PACKAGE(GLUT)
-        SET_TARGET_PROPERTIES(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL;USE_GLUT")
-        TARGET_LINK_LIBRARIES(LibSL_gl ${OPENGL_LIBRARIES})
-        TARGET_LINK_LIBRARIES(LibSL_gl ${GLUT_LIBRARIES})
-      ENDIF(LIBSL_USE_GLFW)
-      INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
-    ENDIF(ANDROID)
-	ENDIF(WIN32)
-	IF(APPLE)
-		ADD_DEFINITIONS(-DGL_GLEXT_LEGACY)
-	ENDIF(APPLE)
-	SET_PROPERTY(TARGET LibSL_gl APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS TW_STATIC TW_NO_LIB_PRAGMA)
+  set_target_properties(LibSL_gl PROPERTIES DEBUG_POSTFIX "-d")
+	if(WIN32)
+		set_target_properties(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL;_WIN32_WINNT=0x0400;WINVER=0x500")
+	else(WIN32)
+    if (ANDROID)
+      set_target_properties(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL")
+      target_link_libraries(LibSL_gl ${OPENGL_LIBRARIES})
+      target_link_libraries(LibSL_gl ${GLUT_LIBRARIES})
+      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
+    else(ANDROID)
+      find_package(OpenGL)
+      if(LIBSL_USE_GLFW)
+        #find_package(glfw3)
+        set_target_properties(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL;USE_GLFW")
+        target_link_libraries(LibSL_gl ${OPENGL_LIBRARIES})
+        target_link_libraries(LibSL_gl glfw)
+      else(LIBSL_USE_GLFW)
+        find_package(GLUT)
+        set_target_properties(LibSL_gl PROPERTIES COMPILE_DEFINITIONS "OPENGL;USE_GLUT")
+        target_link_libraries(LibSL_gl ${OPENGL_LIBRARIES})
+        target_link_libraries(LibSL_gl ${GLUT_LIBRARIES})
+      endif(LIBSL_USE_GLFW)
+      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
+    endif(ANDROID)
+	endif(WIN32)
+	if(APPLE)
+		add_definitions(-DGL_GLEXT_LEGACY)
+	endif(APPLE)
+	set_property(TARGET LibSL_gl APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS TW_STATIC TW_NO_LIB_PRAGMA)
 
-  IF (LIBSL_USE_GLUX)
-  IF (ANDROID)
-	TARGET_LINK_LIBRARIES(LibSL_gl LibSL)
-  ELSE(ANDROID)
-	TARGET_LINK_LIBRARIES(LibSL_gl LibSL glux)
-  ENDIF(ANDROID)
-  ELSE(LIBSL_USE_GLUX)
-	TARGET_LINK_LIBRARIES(LibSL_gl LibSL)
-  ENDIF(LIBSL_USE_GLUX)
+  if (LIBSL_USE_GLUX)
+  if (ANDROID)
+	target_link_libraries(LibSL_gl LibSL)
+  else(ANDROID)
+	target_link_libraries(LibSL_gl LibSL glux)
+  endif(ANDROID)
+  else(LIBSL_USE_GLUX)
+	target_link_libraries(LibSL_gl LibSL)
+  endif(LIBSL_USE_GLUX)
   
-	INSTALL(TARGETS LibSL_gl
+	install(TARGETS LibSL_gl
 		RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
 		LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
 		ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib
@@ -560,168 +560,168 @@ ENDIF(NOT ANDROID)
 
   #####
   
-IF (LIBSL_BUILD_GL4)
-	ADD_LIBRARY(LibSL_gl4 STATIC ${LIBSL_GL4_SOURCE} ${LIBSL_GL4_HEADERS})
-	SET_TARGET_PROPERTIES(LibSL_gl4 PROPERTIES DEBUG_POSTFIX "-d")
+if (LIBSL_BUILD_GL4)
+	add_library(LibSL_gl4 STATIC ${LIBSL_GL4_SOURCE} ${LIBSL_GL4_HEADERS})
+	set_target_properties(LibSL_gl4 PROPERTIES DEBUG_POSTFIX "-d")
 
-	IF (LIBSL_USE_GLUX)
-	  ADD_DEFINITIONS(-DUSE_GLUX)
-	  SET_TARGET_PROPERTIES(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "USE_GLUX")
-	  SET_PROPERTY(TARGET LibSL_gl4 APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS USE_GLUX)
-	  IF(NOT WIN32)
+	if (LIBSL_USE_GLUX)
+	  add_definitions(-DUSE_GLUX)
+	  set_target_properties(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "USE_GLUX")
+	  set_property(TARGET LibSL_gl4 APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS USE_GLUX)
+	  if(NOT WIN32)
 	    # hack due to MESA headers including ARB_multitexture
-	    ADD_DEFINITIONS(-DGL_ARB_multitexture=1)
-	    SET_PROPERTY(TARGET LibSL_gl4 APPEND PROPERTY COMPILE_DEFINITIONS GL_ARB_multitexture=1)
-	    SET_PROPERTY(TARGET LibSL_gl4 APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS GL_ARB_multitexture=1)
-	  ENDIF(NOT WIN32)
-	ENDIF (LIBSL_USE_GLUX)
+	    add_definitions(-DGL_ARB_multitexture=1)
+	    set_property(TARGET LibSL_gl4 APPEND PROPERTY COMPILE_DEFINITIONS GL_ARB_multitexture=1)
+	    set_property(TARGET LibSL_gl4 APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS GL_ARB_multitexture=1)
+	  endif(NOT WIN32)
+	endif (LIBSL_USE_GLUX)
 
-	IF(WIN32)
-		SET_TARGET_PROPERTIES(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;_WIN32_WINNT=0x0400;WINVER=0x500")
-	ELSE(WIN32)
-		FIND_PACKAGE(OpenGL)
-    IF(LIBSL_USE_GLFW)
-      FIND_PACKAGE(glfw3 REQUIRED)
-      SET_TARGET_PROPERTIES(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;USE_GLFW")
-      TARGET_LINK_LIBRARIES(LibSL_gl4 ${OPENGL_LIBRARIES})
-      TARGET_LINK_LIBRARIES(LibSL_gl4 glfw) #${GLFW3_LIBRARIES}
-    ELSE(LIBSL_USE_GLFW)
-      FIND_PACKAGE(GLUT)
-      SET_TARGET_PROPERTIES(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;USE_GLUT")
-      TARGET_LINK_LIBRARIES(LibSL_gl4 ${OPENGL_LIBRARIES})
-      TARGET_LINK_LIBRARIES(LibSL_gl4 ${GLUT_LIBRARIES})
-    ENDIF(LIBSL_USE_GLFW)
-		INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl4.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
-	ENDIF(WIN32)
-	IF(APPLE)
-		ADD_DEFINITIONS(-DGL_GLEXT_LEGACY)
-	ENDIF(APPLE)
-	SET_PROPERTY(TARGET LibSL_gl4 APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS TW_STATIC TW_NO_LIB_PRAGMA)
+	if(WIN32)
+		set_target_properties(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;_WIN32_WINNT=0x0400;WINVER=0x500")
+	else(WIN32)
+		find_package(OpenGL)
+    if(LIBSL_USE_GLFW)
+      find_package(glfw3 REQUIRED)
+      set_target_properties(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;USE_GLFW")
+      target_link_libraries(LibSL_gl4 ${OPENGL_LIBRARIES})
+      target_link_libraries(LibSL_gl4 glfw) #${GLFW3_LIBRARIES}
+    else(LIBSL_USE_GLFW)
+      find_package(GLUT)
+      set_target_properties(LibSL_gl4 PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;USE_GLUT")
+      target_link_libraries(LibSL_gl4 ${OPENGL_LIBRARIES})
+      target_link_libraries(LibSL_gl4 ${GLUT_LIBRARIES})
+    endif(LIBSL_USE_GLFW)
+		install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl4.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
+	endif(WIN32)
+	if(APPLE)
+		add_definitions(-DGL_GLEXT_LEGACY)
+	endif(APPLE)
+	set_property(TARGET LibSL_gl4 APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS TW_STATIC TW_NO_LIB_PRAGMA)
 
-  IF (LIBSL_USE_GLUX)
-	TARGET_LINK_LIBRARIES(LibSL_gl4 LibSL glux)
-  ELSE(LIBSL_USE_GLUX)
-	TARGET_LINK_LIBRARIES(LibSL_gl4 LibSL)
-  ENDIF(LIBSL_USE_GLUX)
+  if (LIBSL_USE_GLUX)
+	target_link_libraries(LibSL_gl4 LibSL glux)
+  else(LIBSL_USE_GLUX)
+	target_link_libraries(LibSL_gl4 LibSL)
+  endif(LIBSL_USE_GLUX)
 
-	INSTALL(TARGETS LibSL_gl4
+	install(TARGETS LibSL_gl4
 		RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
 		LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
 		ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib
 	)
-ENDIF(LIBSL_BUILD_GL4)
+endif(LIBSL_BUILD_GL4)
 
   #####
   
-IF (LIBSL_BUILD_GL4CORE)
-	ADD_LIBRARY(LibSL_gl4core STATIC ${LIBSL_GL4CORE_SOURCE} ${LIBSL_GL4CORE_HEADERS})
-	SET_TARGET_PROPERTIES(LibSL_gl4core PROPERTIES DEBUG_POSTFIX "-d")
+if (LIBSL_BUILD_GL4CORE)
+	add_library(LibSL_gl4core STATIC ${LIBSL_GL4CORE_SOURCE} ${LIBSL_GL4CORE_HEADERS})
+	set_target_properties(LibSL_gl4core PROPERTIES DEBUG_POSTFIX "-d")
 
-	IF (LIBSL_USE_GLUX)
-	  ADD_DEFINITIONS(-DUSE_GLUX)
-	  SET_TARGET_PROPERTIES(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "USE_GLUX")
-	  SET_PROPERTY(TARGET LibSL_gl4core APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS USE_GLUX)
-	  IF(NOT WIN32)
+	if (LIBSL_USE_GLUX)
+	  add_definitions(-DUSE_GLUX)
+	  set_target_properties(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "USE_GLUX")
+	  set_property(TARGET LibSL_gl4core APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS USE_GLUX)
+	  if(NOT WIN32)
 	    # hack due to MESA headers including ARB_multitexture
-	    ADD_DEFINITIONS(-DGL_ARB_multitexture=1)
-	    SET_PROPERTY(TARGET LibSL_gl4core APPEND PROPERTY COMPILE_DEFINITIONS GL_ARB_multitexture=1)
-	    SET_PROPERTY(TARGET LibSL_gl4core APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS GL_ARB_multitexture=1)
-	  ENDIF(NOT WIN32)
-	ENDIF (LIBSL_USE_GLUX)
+	    add_definitions(-DGL_ARB_multitexture=1)
+	    set_property(TARGET LibSL_gl4core APPEND PROPERTY COMPILE_DEFINITIONS GL_ARB_multitexture=1)
+	    set_property(TARGET LibSL_gl4core APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS GL_ARB_multitexture=1)
+	  endif(NOT WIN32)
+	endif (LIBSL_USE_GLUX)
 
-	IF(WIN32)
-		SET_TARGET_PROPERTIES(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;OPENGLCORE;_WIN32_WINNT=0x0400;WINVER=0x500")
-	ELSE(WIN32)
-		FIND_PACKAGE(OpenGL)
-                IF(LIBSL_USE_GLFW)
-                    FIND_PACKAGE(glfw3 REQUIRED)
-                    SET_TARGET_PROPERTIES(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;OPENGLCORE;USE_GLFW")
-                    TARGET_LINK_LIBRARIES(LibSL_gl4core ${OPENGL_LIBRARIES})
-                    TARGET_LINK_LIBRARIES(LibSL_gl4core glfw) #${GLFW3_LIBRARIES}
-                ELSE(LIBSL_USE_GLFW)
-                    FIND_PACKAGE(GLUT)
-                    SET_TARGET_PROPERTIES(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;OPENGLCORE;USE_GLUT")
-                    TARGET_LINK_LIBRARIES(LibSL_gl4core ${OPENGL_LIBRARIES})
-                    TARGET_LINK_LIBRARIES(LibSL_gl4core ${GLUT_LIBRARIES})
-                ENDIF(LIBSL_USE_GLFW)
-                INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl4core.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
-	ENDIF(WIN32)
-	IF(APPLE)
-		ADD_DEFINITIONS(-DGL_GLEXT_LEGACY)
-	ENDIF(APPLE)
-	SET_PROPERTY(TARGET LibSL_gl4core APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS TW_STATIC TW_NO_LIB_PRAGMA)
+	if(WIN32)
+		set_target_properties(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;OPENGLCORE;_WIN32_WINNT=0x0400;WINVER=0x500")
+	else(WIN32)
+		find_package(OpenGL)
+                if(LIBSL_USE_GLFW)
+                    find_package(glfw3 REQUIRED)
+                    set_target_properties(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;OPENGLCORE;USE_GLFW")
+                    target_link_libraries(LibSL_gl4core ${OPENGL_LIBRARIES})
+                    target_link_libraries(LibSL_gl4core glfw) #${GLFW3_LIBRARIES}
+                else(LIBSL_USE_GLFW)
+                    find_package(GLUT)
+                    set_target_properties(LibSL_gl4core PROPERTIES COMPILE_DEFINITIONS "OPENGL;OPENGL4;OPENGLCORE;USE_GLUT")
+                    target_link_libraries(LibSL_gl4core ${OPENGL_LIBRARIES})
+                    target_link_libraries(LibSL_gl4core ${GLUT_LIBRARIES})
+                endif(LIBSL_USE_GLFW)
+                install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libLibSL_gl4core.a" DESTINATION ${CMAKE_SOURCE_DIR}/lib)
+	endif(WIN32)
+	if(APPLE)
+		add_definitions(-DGL_GLEXT_LEGACY)
+	endif(APPLE)
+	set_property(TARGET LibSL_gl4core APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS TW_STATIC TW_NO_LIB_PRAGMA)
 
-	TARGET_LINK_LIBRARIES(LibSL_gl4core LibSL glux)
-	INSTALL(TARGETS LibSL_gl4core
+	target_link_libraries(LibSL_gl4core LibSL glux)
+	install(TARGETS LibSL_gl4core
 		RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
 		LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
 		ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib
 	)
-ENDIF(LIBSL_BUILD_GL4CORE)
+endif(LIBSL_BUILD_GL4CORE)
 
 
-ENDIF(LIBSL_BUILD_GL)
+endif(LIBSL_BUILD_GL)
 
 ###############################
 
-IF(LIBSL_BUILD_DX9)
-	INCLUDE_DIRECTORIES($ENV{DXSDK_DIR}/Samples/C++/DXUT/Core)
-	INCLUDE_DIRECTORIES($ENV{DXSDK_DIR}/Include)
-	ADD_LIBRARY(LibSL_d3d STATIC ${LIBSL_DX9_SOURCE} ${LIBSL_DX9_HEADERS})
-	SET_TARGET_PROPERTIES(LibSL_d3d PROPERTIES COMPILE_FLAGS -DDIRECT3D)
-	SET_TARGET_PROPERTIES(LibSL_d3d PROPERTIES DEBUG_POSTFIX "-d")
-	TARGET_LINK_LIBRARIES(LibSL_d3d LibSL)
-	INSTALL(TARGETS LibSL_d3d
+if(LIBSL_BUILD_DX9)
+	include_directories($ENV{DXSDK_DIR}/Samples/C++/DXUT/Core)
+	include_directories($ENV{DXSDK_DIR}/Include)
+	add_library(LibSL_d3d STATIC ${LIBSL_DX9_SOURCE} ${LIBSL_DX9_HEADERS})
+	set_target_properties(LibSL_d3d PROPERTIES COMPILE_FLAGS -DDIRECT3D)
+	set_target_properties(LibSL_d3d PROPERTIES DEBUG_POSTFIX "-d")
+	target_link_libraries(LibSL_d3d LibSL)
+	install(TARGETS LibSL_d3d
 		RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
 		LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
 		ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib
 	)
-ENDIF(LIBSL_BUILD_DX9)
+endif(LIBSL_BUILD_DX9)
 
 ###############################
 
-IF(LIBSL_BUILD_DX10)
-	INCLUDE_DIRECTORIES($ENV{DXSDK_DIR}/Samples/C++/DXUT/Core)
-	INCLUDE_DIRECTORIES($ENV{DXSDK_DIR}/Include)
-	ADD_LIBRARY(LibSL_dx10 STATIC ${LIBSL_DX10_SOURCE} ${LIBSL_DX10_HEADERS})
-	SET_TARGET_PROPERTIES(LibSL_dx10 PROPERTIES COMPILE_FLAGS -DDIRECTX10)
-	SET_TARGET_PROPERTIES(LibSL_dx10 PROPERTIES DEBUG_POSTFIX "-d")
-	TARGET_LINK_LIBRARIES(LibSL_dx10 LibSL)
-	INSTALL(TARGETS LibSL_dx10
+if(LIBSL_BUILD_DX10)
+	include_directories($ENV{DXSDK_DIR}/Samples/C++/DXUT/Core)
+	include_directories($ENV{DXSDK_DIR}/Include)
+	add_library(LibSL_dx10 STATIC ${LIBSL_DX10_SOURCE} ${LIBSL_DX10_HEADERS})
+	set_target_properties(LibSL_dx10 PROPERTIES COMPILE_FLAGS -DDIRECTX10)
+	set_target_properties(LibSL_dx10 PROPERTIES DEBUG_POSTFIX "-d")
+	target_link_libraries(LibSL_dx10 LibSL)
+	install(TARGETS LibSL_dx10
 		RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
 		LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
 		ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib
 	)
-ENDIF(LIBSL_BUILD_DX10)
+endif(LIBSL_BUILD_DX10)
 
 ###############################
 
-IF(LIBSL_BUILD_LINALG)
-#	IF(WIN32)
-#		INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src/libs/bin/win32/TAUCS/include)
-#		SET(TAUCS_LIB_PATH ${CMAKE_SOURCE_DIR}/src/libs/bin/win32/TAUCS/lib)
-#	ENDIF(WIN32)
-	ADD_LIBRARY(LibSL_linalg STATIC ${LIBSL_LINALG_SOURCE} ${LIBSL_LINALG_HEADERS})
-	SET_TARGET_PROPERTIES(LibSL_linalg PROPERTIES DEBUG_POSTFIX "-d")
-	TARGET_LINK_LIBRARIES(LibSL_linalg LibSL)
-	TARGET_LINK_LIBRARIES(LibSL_linalg nl newmat)
-#	IF(WIN32)
-#		TARGET_LINK_LIBRARIES(LibSL_linalg ${TAUCS_LIB_PATH}/libatlas.lib ${TAUCS_LIB_PATH}/libcblas.lib ${TAUCS_LIB_PATH}/libf77blas.lib ${TAUCS_LIB_PATH}/liblapack.lib ${TAUCS_LIB_PATH}/libmetis.lib ${TAUCS_LIB_PATH}/vcf2c.lib ${TAUCS_LIB_PATH}/libtaucs.lib)
-#	ENDIF(WIN32)
-	INSTALL(TARGETS LibSL_linalg
+if(LIBSL_BUILD_LINALG)
+#	if(WIN32)
+#		include_directories(${CMAKE_SOURCE_DIR}/src/libs/bin/win32/TAUCS/include)
+#		set(TAUCS_LIB_PATH ${CMAKE_SOURCE_DIR}/src/libs/bin/win32/TAUCS/lib)
+#	endif(WIN32)
+	add_library(LibSL_linalg STATIC ${LIBSL_LINALG_SOURCE} ${LIBSL_LINALG_HEADERS})
+	set_target_properties(LibSL_linalg PROPERTIES DEBUG_POSTFIX "-d")
+	target_link_libraries(LibSL_linalg LibSL)
+	target_link_libraries(LibSL_linalg nl newmat)
+#	if(WIN32)
+#		target_link_libraries(LibSL_linalg ${TAUCS_LIB_PATH}/libatlas.lib ${TAUCS_LIB_PATH}/libcblas.lib ${TAUCS_LIB_PATH}/libf77blas.lib ${TAUCS_LIB_PATH}/liblapack.lib ${TAUCS_LIB_PATH}/libmetis.lib ${TAUCS_LIB_PATH}/vcf2c.lib ${TAUCS_LIB_PATH}/libtaucs.lib)
+#	endif(WIN32)
+	install(TARGETS LibSL_linalg
 		RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/bin
 		LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/lib
 		ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib
 	)
-ENDIF(LIBSL_BUILD_LINALG)
+endif(LIBSL_BUILD_LINALG)
 
 ###############################
 
 # various fixes
-IF(APPLE)
-SET(CMAKE_C_ARCHIVE_FINISH "<CMAKE_RANLIB> -c <TARGET>")
-SET(CMAKE_CXX_ARCHIVE_FINISH "<CMAKE_RANLIB> -c <TARGET>")
-SET(CMAKE_Fortran_ARCHIVE_FINISH "<CMAKE_RANLIB> -c <TARGET>")
-ENDIF(APPLE)
+if(APPLE)
+set(CMAKE_C_ARCHIVE_FINISH "<CMAKE_RANLIB> -c <TARGET>")
+set(CMAKE_CXX_ARCHIVE_FINISH "<CMAKE_RANLIB> -c <TARGET>")
+set(CMAKE_Fortran_ARCHIVE_FINISH "<CMAKE_RANLIB> -c <TARGET>")
+endif(APPLE)
 
 ###############################

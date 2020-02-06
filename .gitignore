@@ -1,4 +1,6 @@
 ## Ignore LibSL builded files
+bin/
+lib/
 
 # libs files
 src/libs/
