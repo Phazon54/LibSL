@@ -1,0 +1,19 @@
+set(MATH_HEADERS
+	floatN.h
+	Frame.h
+	Histogram.h
+	LBGClustering.h
+	LloydClustering.h
+	LloydClusteringOnQuantized.h
+	Math.h
+	Matrix4x4.h
+	Quaternion.h
+	Stats.h
+	Tuple.h
+	Vertex.h
+)
+
+set(MATH_SOURCES
+	Math.cpp
+	Vertex.cpp
+)

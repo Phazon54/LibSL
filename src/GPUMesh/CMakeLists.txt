@@ -1,0 +1,20 @@
+set(GPU_MESHS_HEADERS
+	GPUMesh.h
+	GPUMesh_CompilePolicy_D3D.h
+	GPUMesh_CompilePolicy_dx10.h
+	GPUMesh_CompilePolicy_GL_Calls.h
+	GPUMesh_CompilePolicy_GL_DisplayList.h
+	GPUMesh_CompilePolicy_GL_VBO.h
+	GPUMesh_CompilePolicy_GL4_VBO.h
+	GPUMesh_CompilePolicy_GLES_VBO.h
+	GPUMesh_d3d.h
+	GPUMesh_D3D_SortTypelist.h
+	GPUMesh_D3D_types.h
+	GPUMesh_dx10.h
+	GPUMesh_gl.h
+	GPUMesh_GL_funcs.h
+	GPUMesh_GL_types.h
+	GPUMesh_gl4.h
+	GPUMesh_primitives.h
+	GPUMesh_VertexStorage.h
+)

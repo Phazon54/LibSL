@@ -1,0 +1,23 @@
+set(UI_HELPERS_HEADERS
+	BindAntTweakBar.h
+	BindImGui.h
+	Manipulator.h
+	SimpleUI.h
+	StyleManager.h
+	Trackball.h
+	TrackballUI.h
+)
+
+set(UI_HELPERS_SOURCES
+	BindAntTweakBar.cpp
+	BindImGui.cpp
+	Manipulator.cpp
+	SimpleUI.cpp
+	SimpleUI_glfw.cpp
+	SimpleUI_glut.cpp
+	SimpleUI_win_d3d.cpp
+	SimpleUI_win_gl.cpp
+	StyleManager.cpp
+	Trackball.cpp
+  TrackballUI.cpp
+)

@@ -1,0 +1,49 @@
+set(MESH_HEADERS
+	AnimatedMesh.h
+	AnimatedMeshCgRenderer.h
+	AnimatedMeshController.h
+  AnimatedMeshFormat_animesh.h
+  AnimatedMeshFxRenderer.h
+	AnimatedMeshGLSLRenderer.h
+	Mesh.h
+	MeshEditing.h
+	MeshFormat_3DS.h
+	MeshFormat_dae.h
+	MeshFormat_map.h
+	MeshFormat_mesh.h
+	MeshFormat_OBJ.h
+	MeshFormat_off.h
+	MeshFormat_ply.h
+	MeshFormat_proc.h
+	MeshFormat_stl.h
+	MeshFormat_wrl.h
+	MeshRenderer.h
+	TexturedMeshRenderer.h
+	VertexFormat.h
+	VertexFormat_base.h
+	VertexFormat_descriptor.h
+	VertexFormat_dynamic.h
+	VertexFormat_reference.h
+)
+
+set(MESH_SOURCES
+	AnimatedMesh.cpp
+	AnimatedMeshCgRenderer.cpp
+	AnimatedMeshController.cpp
+  AnimatedMeshFormat_animesh.cpp
+  AnimatedMeshFxRenderer.cpp
+	AnimatedMeshGLSLRenderer.cpp
+	Mesh.cpp
+	MeshEditing.cpp
+	MeshFormat_3DS.cpp
+	MeshFormat_dae.cpp
+	MeshFormat_map.cpp
+	MeshFormat_mesh.cpp
+	MeshFormat_OBJ.cpp
+	MeshFormat_off.cpp
+	MeshFormat_ply.cpp
+	MeshFormat_proc.cpp
+	MeshFormat_stl.cpp
+	MeshFormat_wrl.cpp
+	VertexFormat_dynamic.cpp
+)

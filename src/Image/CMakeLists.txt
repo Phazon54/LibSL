@@ -1,0 +1,29 @@
+set(IMAGE_HEADERS
+	DistanceField.h
+	Filter.h
+	GradientPaste.h
+	Image.h
+	ImageFormat_dds.h
+	ImageFormat_float.h
+	ImageFormat_half.h
+	ImageFormat_JPG.h
+	ImageFormat_pfm.h
+	ImageFormat_PNG.h
+	ImageFormat_TGA.h
+	ImagePyramid.h
+	PushPull.h
+	tga.h
+)
+
+set(IMAGE_SOURCES
+	DistanceField.cpp
+	Image.cpp
+	ImageFormat_dds.cpp
+	ImageFormat_float.cpp
+	ImageFormat_half.cpp
+	ImageFormat_JPG.cpp
+	ImageFormat_pfm.cpp
+	ImageFormat_PNG.cpp
+	ImageFormat_TGA.cpp
+	tga.cpp
+)

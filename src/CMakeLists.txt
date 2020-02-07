@@ -2,166 +2,39 @@ project(LIBSL)
 
 ###############################
 
+add_subdirectory(ArrayHelpers)
+add_subdirectory(CgHelpers)
+add_subdirectory(CppHelpers)
+add_subdirectory(D3DHelpers)
+add_subdirectory(DataStructures)
+add_subdirectory(Errors)
+add_subdirectory(Geometry)
+add_subdirectory(GLHelpers)
+add_subdirectory(GPUHelpers)
+add_subdirectory(GPUMesh)
+add_subdirectory(GPUTex)
+add_subdirectory(Image)
+add_subdirectory(LibSL_sharp)
+add_subdirectory(LinAlg)
+add_subdirectory(Math)
+add_subdirectory(Memory)
+add_subdirectory(Mesh)
+add_subdirectory(Shader)
+add_subdirectory(StlHelpers)
+add_subdirectory(SvgHelpers)
+add_subdirectory(System)
+add_subdirectory(TemplateHelpers)
+add_subdirectory(UIHelpers)
+add_subdirectory(Win32Helpers)
+
 set(LIBSL_CORE_HEADERS
 	LibSL.common.h
 	LibSL.h
 	LibSL.precompiled.h
-	CppHelpers/BasicParser.h
-	CppHelpers/CppHelpers.h
-	DataStructures/Graph.h
-	DataStructures/GraphAlgorithms.h
-	DataStructures/Hierarchy.h
-	DataStructures/Pod.h
-  DataStructures/Pow2Tree.h
-	Errors/Errors.h
-	Geometry/AAB.h
-	Geometry/Bezier.h
-	Geometry/BezierCurve.h
-	Geometry/Brush.h
-	Geometry/ConvexHull.h
-	Geometry/ImplicitShape.h
-	Geometry/LookUpTable.h
-	Geometry/MarchingCubes.h
-	Geometry/Plane.h
-	Geometry/Polygon.h
-	Geometry/Voxelizer.h
-	Geometry/VoxelTools.h
-	Geometry/Contour.h
-	Geometry/Morpho.h
-	Geometry/PointTree.h
-	Geometry/Components.h
-	Geometry/Distances/Distance_Segment_Point.h
-	Geometry/Intersections/Intersection_Plane_AABox.h
-	Geometry/Intersections/Intersection_Polygon_AABox.h
-	Geometry/Intersections/Intersection_Ray_AABox.h
-	Geometry/Intersections/Intersection_Ray_Plane.h
-	Geometry/Intersections/Intersection_Segment_Segment.h
-	Image/Filter.h
-	Image/Image.h
-	Image/ImageFormat_dds.h
-	Image/ImageFormat_float.h
-	Image/ImageFormat_half.h
-	Image/ImageFormat_JPG.h
-	Image/ImageFormat_pfm.h
-	Image/ImageFormat_PNG.h
-	Image/ImageFormat_TGA.h
-	Image/ImagePyramid.h
-	Image/tga.h
-	Image/DistanceField.h
-	Math/Frame.h
-	Math/Histogram.h
-	Math/LBGClustering.h
-	Math/LloydClustering.h
-	Math/LloydClusteringOnQuantized.h
-	Math/Math.h
-	Math/Matrix4x4.h
-	Math/Quaternion.h
-	Math/Stats.h
-	Math/Tuple.h
-	Math/Vertex.h
-	Memory/Array.h
-	Memory/Array2D.h
-	Memory/Array3D.h
-	Memory/ArrayND.h
-	Memory/ArrayRemap.h
-	Memory/Cache.h
-	Memory/Pointer.h
-	Memory/TraceLeaks.h
-	Mesh/AnimatedMesh.h
-	Mesh/AnimatedMeshGLSLRenderer.h
-	Mesh/AnimatedMeshController.h
-	Mesh/AnimatedMeshFxRenderer.h
-	Mesh/Mesh.h
-	Mesh/MeshEditing.h
-	Mesh/MeshFormat_3DS.h
-	Mesh/MeshFormat_map.h
-	Mesh/MeshFormat_mesh.h
-	Mesh/MeshFormat_OBJ.h
-	Mesh/MeshFormat_wrl.h
-	Mesh/MeshFormat_proc.h
-	Mesh/MeshFormat_dae.h
-	Mesh/MeshFormat_stl.h
-	Mesh/MeshFormat_off.h
-	Mesh/MeshFormat_ply.h
-	Mesh/MeshRenderer.h
-	Mesh/TexturedMeshRenderer.h
-	Mesh/VertexFormat.h
-	Mesh/VertexFormat_base.h
-	Mesh/VertexFormat_descriptor.h
-	Mesh/VertexFormat_dynamic.h
-	Mesh/VertexFormat_reference.h
-  Mesh/AnimatedMeshFormat_animesh.h
-	Shaders/Nature/Sky.h
-	StlHelpers/StlHelpers.h
-	ArrayHelpers/ArrayHelpers.h
-	SvgHelpers/SvgHelpers.h
-	System/eLut.h
-	System/half.h
-	System/System.h
-	System/toFloat.h
-	System/Types.h
-	TemplateHelpers/ExecuteOnTypeList.h
-	TemplateHelpers/TemplateHelpers.h
-	UIHelpers/Manipulator.h
-	UIHelpers/SimpleUI.h
-	UIHelpers/StyleManager.h
-	UIHelpers/Trackball.h
-	UIHelpers/TrackballUI.h
-	UIHelpers/BindImGui.h
-	Win32Helpers/TrueType.h
-	Win32Helpers/Win32Helpers.h
 	)
 
 set(LIBSL_CORE_SOURCE
-#	./LibSL.cpp
-	StlHelpers/StlHelpers.cpp
-	ArrayHelpers/ArrayHelpers.cpp
-	Memory/TraceLeaks.cpp
-	Memory/ArrayRemap.cpp
-	Image/tga.cpp
-	Image/Image.cpp
-	Image/ImageFormat_PNG.cpp
-	Image/ImageFormat_JPG.cpp
-	Image/ImageFormat_TGA.cpp
-	Image/ImageFormat_float.cpp
-	Image/ImageFormat_pfm.cpp
-	Image/DistanceField.cpp
-	Math/Vertex.cpp
-	System/System.cpp
-	CppHelpers/CppHelpers.cpp
-	SvgHelpers/SvgHelpers.cpp
-	Math/Math.cpp
-	Mesh/Mesh.cpp
-	Mesh/MeshFormat_3DS.cpp
-	Mesh/MeshFormat_OBJ.cpp
-	Mesh/MeshFormat_wrl.cpp
-	Mesh/MeshFormat_mesh.cpp
-	Mesh/MeshFormat_map.cpp
-	Mesh/MeshFormat_proc.cpp
-	Mesh/MeshFormat_dae.cpp
-	Mesh/MeshFormat_stl.cpp
-	Mesh/MeshFormat_off.cpp
-	Mesh/MeshFormat_ply.cpp
-	Mesh/VertexFormat_dynamic.cpp
-	Mesh/AnimatedMesh.cpp
-	Mesh/AnimatedMeshController.cpp
-  Mesh/AnimatedMeshFormat_animesh.cpp
-	Geometry/Intersections/Intersection_Plane_AABox.cpp
-	Geometry/Intersections/Intersection_Polygon_AABox.cpp
-	Geometry/Intersections/Intersection_Ray_Plane.cpp
-	Geometry/Intersections/Intersection_Segment_Segment.cpp
-	Geometry/Intersections/triangle_aabox.cpp
-	Geometry/Intersections/triangle_ray.cpp
-	Geometry/Distances/Distance_Segment_Point.cpp
-	Geometry/ImplicitShape.cpp
-	Geometry/MarchingCubes.cpp
-#	Geometry/Voxelizer.cpp
-	Geometry/Contour.cpp
-	Geometry/Components.cpp
-	Geometry/ConvexHull.cpp
-	Geometry/Morpho.cpp
-  Geometry/PointTree.cpp
-	System/half.cpp
+	#	./LibSL.cpp
 	)
 
 createsourcegroups("Header files" src "${LIBSL_CORE_HEADERS}")
@@ -267,11 +140,11 @@ createsourcegroups("Source files" src "${LIBSL_GL4CORE_SOURCE}")
 
 set(LIBSL_DX9_HEADERS
 	LibSL_d3d.h
-	D3DHelpers/D3DHelpers.h
-	D3DHelpers/FxImageProcessing.h
-	D3DHelpers/D3DQuad.h
-	D3DHelpers/FxHelpers.h
-	D3DHelpers/FxHelpers_dx9_policy.h
+	#D3DHelpers/D3DHelpers.h
+	#D3DHelpers/FxImageProcessing.h
+	#D3DHelpers/D3DQuad.h
+	#D3DHelpers/FxHelpers.h
+	#D3DHelpers/FxHelpers_dx9_policy.h
 	GPUHelpers/Font.h
 	GPUHelpers/GPUHelpers.h
 	GPUHelpers/GPUHelpers_d3d.h
@@ -288,9 +161,9 @@ set(LIBSL_DX9_HEADERS
 )
 
 set(LIBSL_DX9_SOURCE
-	D3DHelpers/D3DHelpers.cpp
-	D3DHelpers/FxImageProcessing.cpp
-	D3DHelpers/D3DQuad.cpp
+	#D3DHelpers/D3DHelpers.cpp
+	#D3DHelpers/FxImageProcessing.cpp
+	#D3DHelpers/D3DQuad.cpp
 	GPUHelpers/Font.cpp
 	GPUHelpers/GPUHelpers.cpp
 	GPUHelpers/Profiler.cpp
@@ -311,11 +184,11 @@ createsourcegroups("Source files" src "${LIBSL_DX9_SOURCE}")
 
 set(LIBSL_DX10_HEADERS
 	LibSL_dx10.h
-	D3DHelpers/D3DHelpers.h
-	D3DHelpers/FxImageProcessing.h
-	D3DHelpers/D3DQuad.h
-	D3DHelpers/FxHelpers.h
-	D3DHelpers/FxHelpers_dx10_policy.h
+	#D3DHelpers/D3DHelpers.h
+	#D3DHelpers/FxImageProcessing.h
+	#D3DHelpers/D3DQuad.h
+	#D3DHelpers/FxHelpers.h
+	#D3DHelpers/FxHelpers_dx10_policy.h
 	GPUHelpers/Font.h
 	GPUHelpers/GPUHelpers.h
 	GPUHelpers/GPUHelpers_d3d.h
@@ -332,9 +205,9 @@ set(LIBSL_DX10_HEADERS
 )
 
 set(LIBSL_DX10_SOURCE
-	D3DHelpers/D3DHelpers.cpp
-	D3DHelpers/FxImageProcessing.cpp
-	D3DHelpers/D3DQuad.cpp
+	#D3DHelpers/D3DHelpers.cpp
+	#D3DHelpers/FxImageProcessing.cpp
+	#D3DHelpers/D3DQuad.cpp
 	GPUHelpers/Font.cpp
 	GPUHelpers/GPUHelpers.cpp
 	GPUHelpers/Profiler.cpp

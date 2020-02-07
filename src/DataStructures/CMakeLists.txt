@@ -1,0 +1,9 @@
+set(DATA_STRUCTS_HEADERS
+	Graph.h
+	GraphAlgorithms.h
+	GraphRndCut.h
+	Hierarchy.h
+	OccupancyMap.h
+	Pod.h
+  Pow2Tree.h
+)

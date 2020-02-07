@@ -1,0 +1,16 @@
+set(GPU_TEX_HEADERS
+	GPUTex.h
+	GPUTex_CompilePolicy_D3D.h
+	GPUTex_CompilePolicy_dx10.h
+	GPUTex_CompilePolicy_GL.h
+	GPUTex_CompilePolicy_GL4.h
+	GPUTex_d3d.h
+	GPUTex_D3D_formats.h
+	GPUTex_dx10.h
+	GPUTex_dx10_formats.h
+	GPUTex_gl.h
+	GPUTex_GL_formats.h
+	GPUTex_GL_types.h
+	GPUTex_GL4_formats.h
+	GPUTex_stdfmt.h
+)
