@@ -12,6 +12,9 @@ include(macros)
 include(ForceOutOfSourceBuild)
 include(UseColors)
 include(CMakeDependentOption)
+include(CheckCompilers)
+# Building LibSL as part of a CMakeLists.txt tree makes the AUTO_BIND_SHADER macro available to the source tree (this behavior is what we want)
+include(tools/autobindshader/AutoBindShader.cmake)
 
 #############################################################################
 # options
@@ -37,17 +40,16 @@ CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_MAX_PERFORMANCE "Build LibSL for performance 
 CMAKE_DEPENDENT_OPTION(LIBSL_MULTITHREADED_STATIC "Build LibSL with /MT flag in Visual C++" OFF "NOT LIBSL_CORE_ONLY" OFF)
 CMAKE_DEPENDENT_OPTION(LIBSL_BOOST "Build and use BOOST with libSL" OFF "NOT LIBSL_CORE_ONLY" OFF)
 
-CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_TOOLS "Build LibSL tools" OFF "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_TOOLS "Build LibSL tools" OFF "NOT ANDROID;NOT EMSCRIPTEN;NOT LIBSL_CORE_ONLY" OFF)
 
 CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_TUTORIALS "Build LibSL tutorials" OFF "NOT LIBSL_CORE_ONLY" OFF)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_ENABLE_NVIDIA_CG "Enable NVidia Env for LibSL" OFF "NOT LIBSL_CORE_ONLY" OFF) # deprecated?
+CMAKE_DEPENDENT_OPTION(LIBSL_TESTS "Build tests for LibSL" OFF "NOT LIBSL_CORE_ONLY" OFF) # deprecated?
 
 CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_LIBARCHIVE "Build libarchive" OFF "NOT LIBSL_CORE_ONLY" OFF)
 CMAKE_DEPENDENT_OPTION(LIBSL_USE_SQLITE "Use SQLite" OFF "NOT LIBSL_CORE_ONLY" OFF)
 CMAKE_DEPENDENT_OPTION(LIBSL_USE_TCALP "Use Tclap" OFF "NOT LIBSL_CORE_ONLY" OFF)
-
-if(ANDROID)
-	add_definitions(-DANDROID)
-endif(ANDROID)
 
 	
 #############################################################################
@@ -58,6 +60,7 @@ configure_file (
   "${PROJECT_SOURCE_DIR}/src/LibSL.config.h"
   )
 
+# Empty ??
 configure_file (
   "${PROJECT_SOURCE_DIR}/src/LibSL_gl.config.h.in"
   "${PROJECT_SOURCE_DIR}/src/LibSL_gl.config.h"
@@ -104,14 +107,14 @@ include_directories(
 			${CMAKE_CURRENT_SOURCE_DIR}/libs/rply
 			)
 
-if (LIBSL_ENABLE_NVIDIA_CG)
+if(LIBSL_ENABLE_NVIDIA_CG)
 	include_directories($ENV{CG_INC_PATH})
 	link_directories($ENV{CG_LIB_PATH})
-endif (LIBSL_ENABLE_NVIDIA_CG)
+endif(LIBSL_ENABLE_NVIDIA_CG)
 
 ###############################################################################
 
-if (LIBSL_MULTITHREADED_STATIC)
+if(LIBSL_MULTITHREADED_STATIC)
 	foreach(flag_var
 	        CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
 	        CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO
@@ -120,13 +123,13 @@ if (LIBSL_MULTITHREADED_STATIC)
 	    	string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
 	   	endif(${flag_var} MATCHES "/MD")
 	endforeach(flag_var)
-endif (LIBSL_MULTITHREADED_STATIC)
+endif(LIBSL_MULTITHREADED_STATIC)
 
 ###############################################################################
 
 ## Linux/GCC: add -fPIC so that LibSL can be linked against shared libraries
-if (NOT WIN32)
-	if (NOT ANDROID)
+if(NOT WIN32)
+	if(NOT ANDROID)
 		if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "x86_64")
 			set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -fPIC")
 			set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fPIC"  )
@@ -144,56 +147,7 @@ if(EMSCRIPTEN)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s WASM=1")
 endif(EMSCRIPTEN)
 
-###############################################################################
-
-# Add C++11 to LibSL target
-#Include(UseCXX17)
-#AddGlobalCXX11()
-
-add_subdirectory(src)
-
-# Building LibSL as part of a CMakeLists.txt tree makes the AUTO_BIND_SHADER macro available to the source tree (this behavior is what we want)
-include(tools/autobindshader/AutoBindShader.cmake)
-
-
-
-
-
-################################################################################
-# LibSL/src/libs/src
-
-################################################################################
-# Hides most of the ELF symbols which would have previously (and unnecessarily)
-# been public. This is the case by default on Windows, but on Linux we need to
-# enable the option when the compiler supports it
-################################################################################
-include(CheckCCompilerFlag)
-include(CheckCXXCompilerFlag)
-
-# The magic flag!
-set(FLAG "-fvisibility=hidden")
-
-# C compiler
-check_c_compiler_flag("${FLAG}" C_SUPPORTS_${FLAG})
-if(C_SUPPORTS_${FLAG})
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FLAG}")
-endif()
-
-# CXX compiler
-check_cxx_compiler_flag("${FLAG}" CXX_SUPPORTS_${FLAG})
-if(CXX_SUPPORTS_${FLAG})
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAG}")
-endif()
-
-
-
-
-################################################################################
-# LibSL/src
-
-# message(STATUS "[in LibSL/src/]")
-
-if (NOT DEFINED CMAKE_BUILD_TYPE)
+if(NOT DEFINED CMAKE_BUILD_TYPE)
 	if(LIBSL_BUILD_DEBUG)
 		set(CMAKE_BUILD_TYPE Debug)
 	else(LIBSL_BUILD_DEBUG)
@@ -201,26 +155,32 @@ if (NOT DEFINED CMAKE_BUILD_TYPE)
 	endif(LIBSL_BUILD_DEBUG)
 endif()
 
+if(ANDROID)
+	add_definitions(-DANDROID)
+endif(ANDROID)
+
+###############################################################################
+
+# Add C++11 to LibSL target
+#Include(UseCXX17)
+#AddGlobalCXX11()
+
+###############################################################################
+add_subdirectory(src)
+
 add_subdirectory(libs)
 
-if(LIBSL_BUILD_SHARP)
-	add_subdirectory(src/LibSL_sharp)
-endif(LIBSL_BUILD_SHARP)
-
 if(LIBSL_BUILD_TOOLS)
-	if(NOT EMSCRIPTEN)
-		if(NOT ANDROID)
-			add_subdirectory(tools)
-		endif(NOT ANDROID)
-	endif(NOT EMSCRIPTEN)
+	add_subdirectory(tools)
 endif(LIBSL_BUILD_TOOLS)
-
-# add_subdirectory(tests)
 
 if(LIBSL_BUILD_TUTORIALS)
 	add_subdirectory(tutorials)
 endif(LIBSL_BUILD_TUTORIALS)
 
-if(EMSCRIPTEN)
-	# add_subdirectory(tests/emscripten)
-endif(EMSCRIPTEN)
+if(LIBSL_TESTS)
+	add_subdirectory(tests)
+	if(EMSCRIPTEN)
+		add_subdirectory(tests/emscripten)
+	endif(EMSCRIPTEN)
+endif(LIBSL_TESTS)
