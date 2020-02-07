@@ -6,139 +6,108 @@ project(LibSL)
 
 set(LibSL_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
+# Include our custom macros
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
+include(macros)
+include(ForceOutOfSourceBuild)
+include(UseColors)
+include(CMakeDependentOption)
+
 #############################################################################
 # options
+option(LIBSL_CORE_ONLY "Build only the core of LibSL" ON)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_GL "Build LibSL_gl" ON "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_GL4 "Build LibSL_gl for OpenGL 4.x" OFF "LIBSL_BUILD_GL;NOT LIBSL_CORE_ONLY" OFF)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_GLUX "Build gluX" ON "NOT ANDROID;NOT EMSCRIPTEN;NOT LIBSL_CORE_ONLY" OFF) #?
+CMAKE_DEPENDENT_OPTION(LIBSL_USE_GLUX "Use gluX with LibSL_gl" ON "NOT ANDROID;NOT EMSCRIPTEN;NOT LIBSL_CORE_ONLY" OFF) #?
+
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_DX9 "Build LibSL_d3d" OFF "WIN32;NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_DX10 "Build LibSL_dx10" OFF "WIN32;NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_SHARP "Build LibSL_sharp" ON "WIN32;NOT LIBSL_CORE_ONLY" OFF)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_USE_ANTTWEAKBAR "Use AntTweakBar with LibSL_gl" OFF "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_USE_IMGUI "Use ImGUI with LibSL_gl" ON "NOT LIBSL_CORE_ONLY" OFF)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_LINALG "Build LibSL_linalg" OFF "NOT LIBSL_CORE_ONLY" OFF) #?
+
+CMAKE_DEPENDENT_OPTION(LIBSL_POWER_USER "Power user mode (reserved, do not use)" OFF "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_MAX_PERFORMANCE "Build LibSL for performance rather than safety" ON "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_MULTITHREADED_STATIC "Build LibSL with /MT flag in Visual C++" OFF "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_BOOST "Build and use BOOST with libSL" OFF "NOT LIBSL_CORE_ONLY" OFF)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_TOOLS "Build LibSL tools" OFF "NOT LIBSL_CORE_ONLY" OFF)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_TUTORIALS "Build LibSL tutorials" OFF "NOT LIBSL_CORE_ONLY" OFF)
+
+CMAKE_DEPENDENT_OPTION(LIBSL_BUILD_LIBARCHIVE "Build libarchive" OFF "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_USE_SQLITE "Use SQLite" OFF "NOT LIBSL_CORE_ONLY" OFF)
+CMAKE_DEPENDENT_OPTION(LIBSL_USE_TCALP "Use Tclap" OFF "NOT LIBSL_CORE_ONLY" OFF)
+
 if(ANDROID)
-	#message(SEND_ERROR "LibSL Android!!")
-	
-	option(LIBSL_BUILD_GL              "Build LibSL_gl" ON)
-	option(LIBSL_BUILD_GL4             "Build LibSL_gl for OpenGL 4.x" OFF)
-	option(LIBSL_BUILD_DX9             "Build LibSL_d3d" OFF)
-	option(LIBSL_BUILD_DX10            "Build LibSL_dx10" OFF)
-	option(LIBSL_BUILD_LINALG          "Build LibSL_linalg" OFF)
-	option(LIBSL_BUILD_MAX_PERFORMANCE "Build LibSL for performance rather than safety" ON)
-	option(LIBSL_BUILD_SHARP           "Build LibSL_sharp" OFF)
-	option(LIBSL_BUILD_TOOLS           "Build LibSL tools" OFF)
-	option(LIBSL_BUILD_TUTORIALS       "Build LibSL tutorials" OFF)
-	option(LIBSL_MULTITHREADED_STATIC  "Build LibSL with /MT flag in Visual C++" OFF)
-	option(LIBSL_BUILD_GLUX            "Build gluX"   OFF)
-	option(LIBSL_BUILD_LIBARCHIVE      "Build libarchive"   OFF)
-	option(LIBSL_USE_GLUX              "Use gluX with LibSL_gl"   OFF)
-	option(LIBSL_POWER_USER            "Power user mode (reserved, do not use)" OFF)
-	
 	add_definitions(-DANDROID)
-
-else (ANDROID)
-
-	if(EMSCRIPTEN)
-
-		option(LIBSL_BUILD_GL              "Build LibSL_gl" ON)
-		option(LIBSL_BUILD_GL4             "Build LibSL_gl for OpenGL 4.x" OFF)
-		option(LIBSL_BUILD_GL4CORE         "Build LibSL_gl for OpenGL 4.x core profile" OFF)
-		option(LIBSL_BUILD_DX9             "Build LibSL_d3d" OFF)
-		option(LIBSL_BUILD_DX10            "Build LibSL_dx10" OFF)
-		option(LIBSL_BUILD_LINALG          "Build LibSL_linalg" ON)
-		option(LIBSL_BUILD_MAX_PERFORMANCE "Build LibSL for performance rather than safety" ON)
-		option(LIBSL_BUILD_SHARP           "Build LibSL_sharp" OFF)
-		option(LIBSL_BUILD_TOOLS           "Build LibSL tools" OFF)
-		option(LIBSL_BUILD_TUTORIALS       "Build LibSL tutorials" OFF)
-		option(LIBSL_MULTITHREADED_STATIC  "Build LibSL with /MT flag in Visual C++" OFF)
-		option(LIBSL_BUILD_GLUX            "Build gluX"   OFF)
-		option(LIBSL_BUILD_LIBARCHIVE      "Build libarchive"   OFF)
-		option(LIBSL_USE_GLUX              "Use gluX with LibSL_gl"   OFF)
-		option(LIBSL_POWER_USER            "Power user mode (reserved, do not use)" OFF)
-	
-	else(EMSCRIPTEN)
-	
-		option(LIBSL_BUILD_GL              "Build LibSL_gl" ON)
-		option(LIBSL_BUILD_GL4             "Build LibSL_gl for OpenGL 4.x" ON)
-		option(LIBSL_BUILD_GL4CORE         "Build LibSL_gl for OpenGL 4.x core profile" ON)
-		option(LIBSL_BUILD_DX9             "Build LibSL_d3d" OFF)
-		option(LIBSL_BUILD_DX10            "Build LibSL_dx10" OFF)
-		option(LIBSL_BUILD_LINALG          "Build LibSL_linalg" ON)
-		option(LIBSL_BUILD_MAX_PERFORMANCE "Build LibSL for performance rather than safety" ON)
-		
-		if(WIN32)
-			option(LIBSL_BUILD_SHARP           "Build LibSL_sharp" ON)
-		else(WIN32)
-			option(LIBSL_BUILD_SHARP           "Build LibSL_sharp" OFF)
-		endif(WIN32)
-
-		option(LIBSL_BUILD_TOOLS           "Build LibSL tools" OFF)
-		option(LIBSL_BUILD_TUTORIALS       "Build LibSL tutorials" OFF)
-		option(LIBSL_MULTITHREADED_STATIC  "Build LibSL with /MT flag in Visual C++" OFF)
-		option(LIBSL_BUILD_GLUX            "Build gluX"   ON)
-		option(LIBSL_BUILD_LIBARCHIVE      "Build libarchive"   OFF)
-		option(LIBSL_USE_GLUX              "Use gluX with LibSL_gl"   ON)
-		option(LIBSL_POWER_USER            "Power user mode (reserved, do not use)" OFF)
-	
-	endif(EMSCRIPTEN)
-	
 endif(ANDROID)
+
 	
 #############################################################################
 # Configure header
 
 configure_file (
-  "${PROJECT_SOURCE_DIR}/src/LibSL/LibSL.config.h.in"
-  "${PROJECT_SOURCE_DIR}/src/LibSL/LibSL.config.h"
+  "${PROJECT_SOURCE_DIR}/src/LibSL.config.h.in"
+  "${PROJECT_SOURCE_DIR}/src/LibSL.config.h"
   )
 
 configure_file (
-  "${PROJECT_SOURCE_DIR}/src/LibSL/LibSL_gl.config.h.in"
-  "${PROJECT_SOURCE_DIR}/src/LibSL/LibSL_gl.config.h"
+  "${PROJECT_SOURCE_DIR}/src/LibSL_gl.config.h.in"
+  "${PROJECT_SOURCE_DIR}/src/LibSL_gl.config.h"
   )
 
 #############################################################################
-# Include our custom macros
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/src/build/)
 
-include(macros)
-include(ForceOutOfSourceBuild)
-include(UseColors)
 
-#[[
-# Find Boost
-set(LIBSL_BOOST_INCLUDE_PATH CACHE PATH "Boost include path")
-set(LIBSL_BOOST_LIBRARY_PATH CACHE PATH "Boost library path")
-set(BOOST_INCLUDEDIR "${LIBSL_BOOST_INCLUDE_PATH}")
-set(BOOST_LIBRARYDIR "${LIBSL_BOOST_LIBRARY_PATH}")
-set(Boost_USE_STATIC_LIBS ON)
-find_package(Boost 1.35.0 COMPONENTS filesystem thread date_time program_options signals system)
-if(NOT Boost_FOUND)
-	message(SEND_ERROR "Boost not found")
-endif(NOT Boost_FOUND)
-#end find boost
-]]
+if(LIBSL_BOOST)
+	# Find Boost
+	set(LIBSL_BOOST_INCLUDE_PATH CACHE PATH "Boost include path")
+	set(LIBSL_BOOST_LIBRARY_PATH CACHE PATH "Boost library path")
+	set(BOOST_INCLUDEDIR "${LIBSL_BOOST_INCLUDE_PATH}")
+	set(BOOST_LIBRARYDIR "${LIBSL_BOOST_LIBRARY_PATH}")
+	set(Boost_USE_STATIC_LIBS ON)
+	find_package(Boost 1.35.0 COMPONENTS filesystem thread date_time program_options signals system)
+	if(NOT Boost_FOUND)
+		message(SEND_ERROR "Boost not found")
+	endif(NOT Boost_FOUND)
+	#end find boost
+
+	# Ugly, but force it to use the path we specified. Otherwise, it breaks on
+	# UNIX as most Linux distros come with a boost installation which gets
+	# found by default.
+	include_directories(${BOOST_INCLUDEDIR})
+	link_directories(${BOOST_LIBRARYDIR})
+endif(LIBSL_BOOST)
+
 
 include_directories(
 			${CMAKE_CURRENT_SOURCE_DIR}/src
-			${CMAKE_CURRENT_SOURCE_DIR}/src/LibSL
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/loki/include
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/tclap/include
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/glux/src
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/png
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/jpeg
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/zlib
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/newmat
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/OpenNL/src
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/anttweakbar/include
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/SQLite
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/qhull/src/libqhull_r
-			${CMAKE_CURRENT_SOURCE_DIR}/src/libs/src/rply
+			${CMAKE_CURRENT_SOURCE_DIR}/libs
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/loki/include
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/tclap/include
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/glux/src
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/png
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/jpeg
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/zlib
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/newmat
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/OpenNL/src
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/anttweakbar/include
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/SQLite
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/qhull/src/libqhull_r
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/rply
 			)
 
 if (LIBSL_ENABLE_NVIDIA_CG)
 	include_directories($ENV{CG_INC_PATH})
 	link_directories($ENV{CG_LIB_PATH})
 endif (LIBSL_ENABLE_NVIDIA_CG)
-
-# Ugly, but force it to use the path we specified. Otherwise, it breaks on
-# UNIX as most Linux distros come with a boost installation which gets
-# found by default.
-include_directories(${BOOST_INCLUDEDIR})
-link_directories(${BOOST_LIBRARYDIR})
 
 ###############################################################################
 
@@ -184,4 +153,74 @@ endif(EMSCRIPTEN)
 add_subdirectory(src)
 
 # Building LibSL as part of a CMakeLists.txt tree makes the AUTO_BIND_SHADER macro available to the source tree (this behavior is what we want)
-include(src/tools/autobindshader/AutoBindShader.cmake)
+include(tools/autobindshader/AutoBindShader.cmake)
+
+
+
+
+
+################################################################################
+# LibSL/src/libs/src
+
+################################################################################
+# Hides most of the ELF symbols which would have previously (and unnecessarily)
+# been public. This is the case by default on Windows, but on Linux we need to
+# enable the option when the compiler supports it
+################################################################################
+include(CheckCCompilerFlag)
+include(CheckCXXCompilerFlag)
+
+# The magic flag!
+set(FLAG "-fvisibility=hidden")
+
+# C compiler
+check_c_compiler_flag("${FLAG}" C_SUPPORTS_${FLAG})
+if(C_SUPPORTS_${FLAG})
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FLAG}")
+endif()
+
+# CXX compiler
+check_cxx_compiler_flag("${FLAG}" CXX_SUPPORTS_${FLAG})
+if(CXX_SUPPORTS_${FLAG})
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAG}")
+endif()
+
+
+
+
+################################################################################
+# LibSL/src
+
+# message(STATUS "[in LibSL/src/]")
+
+if (NOT DEFINED CMAKE_BUILD_TYPE)
+	if(LIBSL_BUILD_DEBUG)
+		set(CMAKE_BUILD_TYPE Debug)
+	else(LIBSL_BUILD_DEBUG)
+		set(CMAKE_BUILD_TYPE Release)
+	endif(LIBSL_BUILD_DEBUG)
+endif()
+
+add_subdirectory(libs)
+
+if(LIBSL_BUILD_SHARP)
+	add_subdirectory(src/LibSL_sharp)
+endif(LIBSL_BUILD_SHARP)
+
+if(LIBSL_BUILD_TOOLS)
+	if(NOT EMSCRIPTEN)
+		if(NOT ANDROID)
+			add_subdirectory(tools)
+		endif(NOT ANDROID)
+	endif(NOT EMSCRIPTEN)
+endif(LIBSL_BUILD_TOOLS)
+
+# add_subdirectory(tests)
+
+if(LIBSL_BUILD_TUTORIALS)
+	add_subdirectory(tutorials)
+endif(LIBSL_BUILD_TUTORIALS)
+
+if(EMSCRIPTEN)
+	# add_subdirectory(tests/emscripten)
+endif(EMSCRIPTEN)

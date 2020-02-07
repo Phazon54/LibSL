@@ -1,0 +1,8 @@
+E:\LibSL\src\LibSL_sharp\C#\bin\Debug\LibSL_sharp.dll
+E:\LibSL\src\LibSL_sharp\C#\bin\Debug\LibSL_sharp.pdb
+E:\LibSL\src\LibSL_sharp\C#\obj\x64\Debug\LibSL_sharp.csprojAssemblyReference.cache
+E:\LibSL\src\LibSL_sharp\C#\obj\x64\Debug\LibSL_sharp.GlPanel.resources
+E:\LibSL\src\LibSL_sharp\C#\obj\x64\Debug\LibSL_sharp.SlidingPanel.resources
+E:\LibSL\src\LibSL_sharp\C#\obj\x64\Debug\LibSL_sharp.csproj.GenerateResource.cache
+E:\LibSL\src\LibSL_sharp\C#\obj\x64\Debug\LibSL_sharp.dll
+E:\LibSL\src\LibSL_sharp\C#\obj\x64\Debug\LibSL_sharp.pdb
