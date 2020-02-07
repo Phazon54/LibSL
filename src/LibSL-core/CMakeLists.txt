@@ -1,0 +1,8 @@
+add_subdirectory(CppHelpers)
+add_subdirectory(Errors)
+add_subdirectory(Geometry)
+add_subdirectory(Image)
+add_subdirectory(Math)
+add_subdirectory(StlHelpers)
+add_subdirectory(SvgHelpers)
+add_subdirectory(System)

@@ -1,4 +1,7 @@
-cmake_minimum_required(VERSION 2.6)
+add_subdirectory(C\#)
+add_subdirectory(D3DHelpers)
+add_subdirectory(GLPanel)
+add_subdirectory(Win32Helpers)
 
 # MESSAGE(STATUS "[in LibSL/src/LibSL_sharp/]")
 

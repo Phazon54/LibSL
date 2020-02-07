@@ -62,8 +62,8 @@ configure_file (
 
 # Empty ??
 configure_file (
-  "${PROJECT_SOURCE_DIR}/src/LibSL_gl.config.h.in"
-  "${PROJECT_SOURCE_DIR}/src/LibSL_gl.config.h"
+  "${PROJECT_SOURCE_DIR}/src/LibSL-GPU/LibSL_gl.config.h.in"
+  "${PROJECT_SOURCE_DIR}/src/LibSL-GPU/LibSL_gl.config.h"
   )
 
 #############################################################################
