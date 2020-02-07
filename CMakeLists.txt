@@ -89,7 +89,7 @@ if(LIBSL_BOOST)
 	link_directories(${BOOST_LIBRARYDIR})
 endif(LIBSL_BOOST)
 
-
+#[[
 include_directories(
 			${CMAKE_CURRENT_SOURCE_DIR}/src
 			${CMAKE_CURRENT_SOURCE_DIR}/libs
@@ -106,6 +106,7 @@ include_directories(
 			${CMAKE_CURRENT_SOURCE_DIR}/libs/qhull/src/libqhull_r
 			${CMAKE_CURRENT_SOURCE_DIR}/libs/rply
 			)
+]]
 
 if(LIBSL_ENABLE_NVIDIA_CG)
 	include_directories($ENV{CG_INC_PATH})

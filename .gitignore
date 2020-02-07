@@ -3,7 +3,7 @@ bin/
 lib/
 
 # libs files
-libs/
+#libs/
 
 # LibSL perl-generated Visual Studio project files
 *.csproj
