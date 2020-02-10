@@ -1,9 +1,17 @@
-
+include(autoDL)
 
 ###############################
 ## Additionnal C++ libraries ##
 ###############################
+zip_check(loki
+  "https://iweb.dl.sourceforge.net/project/loki-lib/Source%20Code/Modern%20C%2B%2B%20Design/loki-book-1st-edition-version.zip"
+  "loki-book-1st-edition-version"
+)
 add_subdirectory(loki)
+zip_check(hashlibpp
+  "https://sourceforge.net/projects/hashlib2plus/files/0.3.4/hashlibpp_0_3_4.zip"
+  "hashlib2plus/trunk"
+)
 add_subdirectory(hashlibpp)
 
 #####################
@@ -17,6 +25,7 @@ add_subdirectory(tinyxml)
 add_subdirectory(zlib)
 
 if (LIBSL_BUILD_LIBARCHIVE)
+  git_check(libarchive https://github.com/libarchive/libarchive.git v3.4.1)
   add_subdirectory(libarchive)
 endif (LIBSL_BUILD_LIBARCHIVE)
 
@@ -24,6 +33,8 @@ endif (LIBSL_BUILD_LIBARCHIVE)
 ## Math libraries ##
 ####################
 add_subdirectory(newmat)
+
+git_check(qhull https://github.com/qhull/qhull.git v7.3.2)
 add_subdirectory(qhull)
 #add_subdirectory(TAUCS) #no cmake # deprecated -> remove?
 
@@ -48,12 +59,18 @@ endif()
 # imgui integration #
 #####################
 if(LIBSL_USE_IMGUI)
+  #if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/imgui/.git)
+  #  execute_process(COMMAND git clone -b v1.74 https://github.com/ocornut/imgui.git ${CMAKE_CURRENT_SOURCE_DIR}/imgui)
+  #endif()
+
+  git_check(imgui https://github.com/ocornut/imgui.git v1.74)
+
   add_definitions(-DIMGUI_IMPL_OPENGL_LOADER_GL3W)
   set(IMGUI_SOURCES imgui/imgui.cpp imgui/imgui_draw.cpp imgui/imgui_widgets.cpp)
   set(IMGUI_HEADERS imgui/imgui.h imgui/imgui_internal.h)
 
   add_library(imgui STATIC ${IMGUI_SOURCES} ${IMGUI_HEADERS})
-  set_property(TARGET imgui APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/libs/imgui)
+  set_property(TARGET imgui APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/imgui)
   set_target_properties(imgui PROPERTIES DEBUG_POSTFIX "-d")
 endif()
 
